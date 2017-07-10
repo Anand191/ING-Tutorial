@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bokeh Plot</title>
+        
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.6.min.css" type="text/css" />
+        
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.6.min.js"></script>
+<script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.6.min.js"></script>
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+        <style>
+          html {
+            width: 100%;
+            height: 100%;
+          }
+          body {
+            width: 90%;
+            height: 100%;
+            margin: auto;
+          }
+        </style>
+    </head>
+    <body>
+        
+        <div class="bk-root">
+            <div class="bk-plotdiv" id="2496293a-2ed2-4dd5-a112-304b6abce9f9"></div>
+        </div>
+        
+        <script type="text/javascript">
+            (function() {
+          var fn = function() {
+            Bokeh.safely(function() {
+              var docs_json = {"3c8b5989-01d3-47a1-9d2d-8b14f6a646bf":{"roots":{"references":[{"attributes":{"button_type":"warning","callback":null,"icon":null,"label":"Time Period","menu":[["Quaterly","a"],["Half Yearly","b"],["Yearly","c"]]},"id":"f36e7127-6317-4b0c-8f1d-197fb17a7c18","type":"Dropdown"},{"attributes":{"button_type":"warning","callback":null,"icon":null,"label":"Time Period","menu":[["Quaterly","time_windows"],["Half Yearly","time_windows"],null,["Yearly","time_windows"]]},"id":"13d802f6-b866-489b-b541-21617526553f","type":"Dropdown"}],"root_ids":["13d802f6-b866-489b-b541-21617526553f","f36e7127-6317-4b0c-8f1d-197fb17a7c18"]},"title":"Bokeh Application","version":"0.12.6"}};
+              var render_items = [{"docid":"3c8b5989-01d3-47a1-9d2d-8b14f6a646bf","elementid":"2496293a-2ed2-4dd5-a112-304b6abce9f9","modelid":"f36e7127-6317-4b0c-8f1d-197fb17a7c18"}];
+              
+              Bokeh.embed.embed_items(docs_json, render_items);
+            });
+          };
+          if (document.readyState != "loading") fn();
+          else document.addEventListener("DOMContentLoaded", fn);
+        })();
+        
+        </script>
+    </body>
+</html>
