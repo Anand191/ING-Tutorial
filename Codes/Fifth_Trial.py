@@ -10,10 +10,28 @@ import pandas as pd
 import numpy as np
 from bokeh.io import curdoc
 from bokeh.plotting import figure
-from bokeh.models import Select, DatetimeTickFormatter, ColumnDataSource, BoxSelectTool, PolySelectTool, LassoSelectTool
+from bokeh.models import Select, DatetimeTickFormatter, ColumnDataSource, BoxSelectTool,LassoSelectTool
 from bokeh.layouts import widgetbox, row
 from bokeh.events import Tap
-import datetime
+from datetime import datetime
+from sqlalchemy import create_engine, MetaData, Table, update
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
+
+engine = create_engine('sqlite:///cdb.db',echo=False)
+Base = declarative_base(engine)
+
+meta = MetaData(engine)
+db = Table('cdb1', meta, autoload=True)
+    
+Session = sessionmaker(bind=engine)
+session = Session()
+
+
+
+
+#%%
 
 df = pd.read_csv("CPU50.csv",sep=",")
 df['TIME'] = df['TIME'].apply(lambda x: x.split('.')[0])
@@ -22,11 +40,12 @@ df.iloc[:,-1] = pd.to_datetime(df.iloc[:,-1])
 df['U_ID'] = df['JOB_NAME'].astype(str) + "_" + df['TIMESTAMP'].astype(str)
 df['Annotate'] = np.zeros(df.shape[0]) 
 df = df.sort_values(by=['TIMESTAMP'])
-df.to_csv('chk.csv',sep=',',encoding='utf8')
+#df.to_csv('chk.csv',sep=',',encoding='utf8')
 jobs = df.iloc[:,3].unique().tolist()
 
+
 #%%
-TOOLS="pan,wheel_zoom,reset,hover,poly_select,box_select,lasso_select"
+TOOLS="pan,wheel_zoom,reset,hover,box_select,lasso_select"
 def create_source(cpu):
     global rows    
     rows = np.where(df.iloc[:,3]==cpu)[0]
@@ -45,16 +64,20 @@ def create_plot(source):
     return p
 
 def annotate(r_index):
+    ddf = df
     if isinstance(r_index,list):
-        subset_arr = df.iloc[rows,-2].values
+        subset_arr = ddf.iloc[rows,-2].values
         for ind in r_index:            
             u_id = subset_arr[ind]
             print u_id
-            loc = np.where(df.iloc[:,-2]==u_id)[0]
-            print df.iloc[loc,-4]
-            df.iloc[loc,-1] = 1
-        df.to_csv("annotated.csv", sep = ',', index=False, encoding = 'utf8')
-            
+            loc = np.where(ddf.iloc[:,-2]==u_id)[0]
+            print ddf.iloc[loc,-4]
+            #ddf.iloc[loc,-1] = 1
+            u = update(db).where(db.c.U_ID == u_id).values(Annotate=1)
+            session.execute(u)
+            session.commit()
+            #ddf.iloc[loc,:].to_sql(con=engine, index_label='id', name=name, if_exists='append')
+
     else:
         u_id = df.iloc[rows,-2][r_index]
         print u_id
@@ -88,6 +111,7 @@ def onclick_event(event):
 def callback(attr, old, new):
     r_indices = source.selected['1d']['indices']
     annotate(r_indices)
+
     
 #%% main
 cpu_job = jobs[0]
