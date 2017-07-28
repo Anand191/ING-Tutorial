@@ -10,8 +10,10 @@ Created on Tue Jul 25 12:25:22 2017
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import os
 
-df = pd.read_csv("CPU50.csv",sep=",")
+dir = os.path.dirname(__file__)
+df = pd.read_csv(os.path.join(dir,'CPU50.csv'),sep=",")
 df['TIME'] = df['TIME'].apply(lambda x: x.split('.')[0])
 df['TIMESTAMP'] = df['FK_DateKey'].astype(str) + " " + df['TIME'].astype(str)
 df.iloc[:,-1] = pd.to_datetime(df.iloc[:,-1])
