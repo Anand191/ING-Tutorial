@@ -19,8 +19,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 #%%
-dir1 = os.path.dirname(os.getcwd())
-dir2 = os.getcwd()
+dir1 = os.path.dirname(os.path.dirname(__file__))
+dir2 = os.path.dirname(__file__)
 db_file = os.path.join(dir1,'cdb.db')
 
 engine = create_engine('sqlite:///{}'.format(db_file),echo=False)
