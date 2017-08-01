@@ -4,7 +4,7 @@
 		module="scala-spark_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20170711145738"
+		publication="20170721131000"
 	>
 		<description>
 		Scala-Spark
