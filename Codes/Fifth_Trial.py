@@ -21,7 +21,7 @@ import os
 #%%
 dir1 = os.path.dirname(os.path.dirname(__file__))
 dir2 = os.path.dirname(__file__)
-db_file = os.path.join(dir1,'cdb.db')
+db_file = os.path.join(dir2,'cdb.db')
 
 engine = create_engine('sqlite:///{}'.format(db_file),echo=False)
 Base = declarative_base(engine)
