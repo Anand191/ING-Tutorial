@@ -4,7 +4,7 @@
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.SparkSession
 object file_reader {
-  def main(args:Array[String]): Unit = {
+  def test2(args:Array[String]): Unit = {
     val conf = new SparkConf()
     conf.setAppName("File Reading Test")
     conf.setMaster("local[*]")
