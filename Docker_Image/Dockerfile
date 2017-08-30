@@ -22,7 +22,7 @@ RUN rm Miniconda-latest-Linux-x86_64.sh
 ENV PATH=/miniconda/bin:${PATH}
 RUN conda update -y conda
 
-###########END INTALLATION############
+###########END INSTALLATION############
 
 # Set the working directory to /app
 WORKDIR /app
@@ -47,6 +47,6 @@ RUN conda install --yes --file requirements.txt
 EXPOSE 80
 
 #Define Entrypoint
-ENTRYPOINT ["/miniconda/bin/python", "ECP_test.py"]
+ENTRYPOINT ["/miniconda/bin/python", "EDM_test.py"]
 #CMD ["python", "ECP_test.py"]
 

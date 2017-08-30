@@ -40,7 +40,7 @@ edm_multi = breakout_detection.EdmMulti()
 
 
 #%%
-
+i = 0
 for job in jobs:
     rows = np.where(X[:,0]==job)[0]
     data = X[rows,1:]
@@ -61,8 +61,10 @@ for job in jobs:
     loc = edm_multi.getLoc()                   
     for j in loc:
         plt.axvline(j,color='g',ls='dashed',lw="1.0")
-plt.show()
-plt.savefig('breakouts.png')
+    plt.savefig('breakouts{}.png'.format(i))
+    plt.show()
+    i += 1
+
         
         
     #cpt = cp.cpt_meanvar(X[rows,1],penalty="MBIC",method="PELT")
