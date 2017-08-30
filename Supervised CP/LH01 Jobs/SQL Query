@@ -1,0 +1,1 @@
+select * from cdb1 where cdb1.JOB_NAME in ('C2PACMON','CNMPROC','OMED5','OMEO2','LRRBPCIC','LFAF','OMEC5','CDCLDB','Q76PCHIN','CONTROLD')

@@ -76,7 +76,7 @@ TOOLS="pan,wheel_zoom,reset,hover,box_select,lasso_select"
 def create_source(cpu):
     global rows    
     rows = np.where(df['JOB_NAME']==cpu)[0]
-    data_dict = {'x':df['TIMESTAMP'].iloc[rows], 'y':df['Rolling_Median'].iloc[rows]}
+    data_dict = {'x':df['TIMESTAMP'].iloc[rows], 'y':df['Rolling_Mean'].iloc[rows]}
     return (ColumnDataSource(data=data_dict))
 
 
@@ -86,8 +86,8 @@ def find_nearest(array,value):
 
 def create_plot(source):    
     p = figure(tools=TOOLS,plot_width=960, plot_height=600)    #output_backend="webgl"
-    p.circle('x','y',source=source,size=8, fill_color="firebrick", fill_alpha=0.3)
-    p.line('x','y',source=source,line_width=1,line_dash='dashed',line_alpha=0.5)
+    p.circle('x','y',source=source,size=3, fill_color="firebrick", fill_alpha=0.3)
+    p.line('x','y',source=source,line_width=1,line_dash='dashed',line_alpha=0.65)
     p.xaxis[0].formatter = DatetimeTickFormatter(days=['%m/%d', '%a%d']) 
     return p
 

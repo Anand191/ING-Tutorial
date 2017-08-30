@@ -40,7 +40,7 @@ for job in jobs:
     beta = 0.0001
     degree = 1
     args = [min_size,beta,degree]    
-    edm_multi.evaluate(X[rows,-1],*args)
+    edm_multi.evaluate(X[rows,1],*args)
     
     plt.figure(figsize=(12,8))
     plt.plot(xcoord,data[:,-1])
